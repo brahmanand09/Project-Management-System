@@ -63,63 +63,80 @@ Make sure you have installed:
 - Docker (optional)
 
 ## ⚡ Quick Start
+
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/brahmanand09/Project-Management-System.git
+cd Project-Management-System
 ```
 
-3️⃣ Frontend Setup
-# Navigate to frontend directory (in a new terminal)
-cd ../Frontend
+---
 
-# Install dependencies
+### 2️⃣ Backend Setup
+
+```bash
+cd Backend
 npm install
+npm run dev
+```
 
-# Start the frontend development server
+✅ Backend will run on: **http://localhost:5000**
+
+---
+
+### 3️⃣ Frontend Setup
+
+```bash
+cd ../Frontend
+npm install
 npm start
+```
 
+✅ Frontend will run on: **http://localhost:3000**
 
-✅ The frontend will run on http://localhost:3000
+---
 
-4️⃣ Environment Configuration
+### 4️⃣ Environment Configuration
 
-If the .env file is missing in the backend folder:
+Create a `.env` file inside the **Backend** folder and add:
 
-# Add environment file
-.env
-Then open the .env file and update it with your configuration:
-
+```env
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 PORT=5000
+```
 
-5️⃣Seeds
+---
 
-To populate the database with initial admin data, run:
+### 5️⃣ Seed Data (Optional)
 
-# Navigate to backend directory
-cd Backend
+To populate the database with initial admin data:
 
-# Run the seed
-npm run seed
-
-
-✅ This will insert initial admin details into your MongoDB database.
-
-🔧 Available Scripts
-🖥️ Backend Scripts
-
-npm start – Start the production server
-
-npm run dev – Start the development server with nodemon
-
-npm test – Run backend tests
-
-💻 Frontend Scripts
-
-npm start – Start the frontend development server
-
-npm run build – Build the project for production
-
-npm test – Run frontend tests
 ```bash
+cd Backend
+npm run seed
+```
+
+✅ This will insert default admin credentials into your MongoDB database.
+
+---
+
+## 🔧 Available Scripts
+
+### 🖥️ Backend
+
+| Command        | Description                         |
+|----------------|-------------------------------------|
+| npm run dev    | Start development server (nodemon)  |
+| npm start      | Start production server             |
+| npm test       | Run backend tests                   |
+
+---
+
+### 💻 Frontend
+
+| Command        | Description                         |
+|----------------|-------------------------------------|
+| npm start      | Start development server            |
+| npm run build  | Build for production                |
+| npm test       | Run frontend tests                  |
