@@ -19,6 +19,7 @@ import { Task, Project } from '../types';
 import { createTask, deleteTask, updateTask, getTasks, getProjects } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
+import { AssignmentRounded } from '@mui/icons-material';
 
 const TasksPage: React.FC = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const TasksPage: React.FC = () => {
             throw err;
           }
         }
-        
+
         const taskArray = Array.isArray(response.data) ? response.data : response.data.data || [];
         setTasks(taskArray);
         setError(null);
@@ -77,29 +78,29 @@ const TasksPage: React.FC = () => {
   }, [selectedProject]);
 
   const handleCreate = async (data: Partial<Task>) => {
-  try {
-    // Ensure projectId is included
-    const taskData = {
-      ...data,
-      projectId: data.projectId || (selectedProject !== 'all' ? selectedProject : undefined)
-    };
-    
-    if (!taskData.projectId) {
-      toast.error('Please select a project for the task', { position: 'top-right', autoClose: 3000 });
-      return;
-    }
+    try {
+      // Ensure projectId is included
+      const taskData = {
+        ...data,
+        projectId: data.projectId || (selectedProject !== 'all' ? selectedProject : undefined)
+      };
 
-    const newTask = await createTask(taskData as Omit<Task, '_id'>);
-    setTasks([...tasks, newTask]);
-    toast.success('Task created successfully', { position: 'top-right', autoClose: 3000 });
-    setFormOpen(false); // Modal close karo
-    setError(null);
-  } catch (error: any) {
-    const msg = error.response?.data?.message  || 'Failed to create task';
-    toast.error(msg, { position: 'top-right', autoClose: 3000 });
-    setError(msg);
-  }
-};
+      if (!taskData.projectId) {
+        toast.error('Please select a project for the task', { position: 'top-right', autoClose: 3000 });
+        return;
+      }
+
+      const newTask = await createTask(taskData as Omit<Task, '_id'>);
+      setTasks([...tasks, newTask]);
+      toast.success('Task created successfully', { position: 'top-right', autoClose: 3000 });
+      setFormOpen(false); // Modal close karo
+      setError(null);
+    } catch (error: any) {
+      const msg = error.response?.data?.message || 'Failed to create task';
+      toast.error(msg, { position: 'top-right', autoClose: 3000 });
+      setError(msg);
+    }
+  };
 
   const handleUpdate = async (data: Partial<Task>) => {
     try {
@@ -149,94 +150,88 @@ const TasksPage: React.FC = () => {
   };
 
   return (
-    <Fade in timeout={600}>
+    <Fade in timeout={400}>
       <Box
         sx={{
           minHeight: '100vh',
-          bgcolor: 'background.default',
-          pt: { xs: 8, sm: 10 },
+          bgcolor: '#f8fafc',
+          pt: { xs: 8, md: 10 },
           pb: 6,
+          overflowY: 'auto',
         }}
       >
-        <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-          {/* Header Section */}
-          <Box sx={{ mb: 6 }}>
-            <Box sx={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: { xs: 'flex-start', sm: 'center' },
-              flexDirection: { xs: 'column', sm: 'row' },
-              gap: 3,
-              mb: 2 
-            }}>
-              <Box>
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: 700,
-                    color: 'text.primary',
-                    fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                    background: 'linear-gradient(135deg, #1976d2 0%, #1565c0 100%)',
-                    backgroundClip: 'text',
-                    textFillColor: 'transparent',
-                    mb: 1,
-                  }}
-                >
-                  All Tasks
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: 'text.secondary',
-                    fontWeight: 400,
-                    fontSize: { xs: '1rem', sm: '1.1rem' },
-                  }}
-                >
-                  Manage and organize your tasks
-                </Typography>
-              </Box>
-              
-              <Button
-                variant="contained"
-                startIcon={<AddIcon />}
-                onClick={() => setFormOpen(true)}
-                sx={{
-                  borderRadius: 3,
-                  px: 4,
-                  py: 1.5,
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  boxShadow: '0 8px 24px rgba(25, 118, 210, 0.2)',
-                  '&:hover': {
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 12px 32px rgba(25, 118, 210, 0.3)',
-                  },
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                New Task
-              </Button>
+        <Container maxWidth="xl">
+
+          {/* 🔷 HEADER */}
+          <Box
+            sx={{
+              p: 2,
+              borderRadius: 4,
+              mb: 2,
+              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              color: '#fff',
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexDirection: { xs: 'column', md: 'row' },
+              gap: 2,
+            }}
+          >
+            <Box>
+              <Typography variant="h4" fontWeight={700}>
+                Task Dashboard
+              </Typography>
+              <Typography sx={{ opacity: 0.85 }}>
+                Manage and track your work efficiently 🚀
+              </Typography>
             </Box>
 
-            {/* Filter Section */}
-            <Box sx={{ 
-              display: 'flex', 
-              gap: 3, 
-              flexWrap: 'wrap',
-              mt: 3,
-              alignItems: 'center'
-            }}>
-              <FormControl sx={{ minWidth: 200 }}>
-                <InputLabel>Filter by Project</InputLabel>
+            <Button
+              variant="contained"
+              startIcon={<AddIcon />}
+              onClick={() => setFormOpen(true)}
+              sx={{
+                bgcolor: '#fff',
+                color: '#6366f1',
+                fontWeight: 600,
+                borderRadius: 3,
+                px: 3,
+                '&:hover': { bgcolor: '#f1f5f9' },
+              }}
+            >
+              New Task
+            </Button>
+          </Box>
+
+          {/* 🔷 FILTER + STATS */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', lg: 'row' },
+              gap: 3,
+              mb: 2,
+            }}
+          >
+            {/* Filter Card */}
+            <Box
+              sx={{
+                flex: 1,
+                p: 3,
+                borderRadius: 3,
+                bgcolor: '#fff',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+              }}
+            >
+              <Typography fontWeight={600} mb={1}>
+                Filter by Project
+              </Typography>
+
+              <FormControl fullWidth>
                 <Select
                   value={selectedProject}
                   onChange={(e) => setSelectedProject(e.target.value)}
-                  label="Filter by Project"
-                  sx={{
-                    borderRadius: 2,
-                  }}
+                  sx={{ borderRadius: 2 }}
                 >
-                  <MenuItem value="all">All Tasks</MenuItem>
+                  <MenuItem value="all">All Projects</MenuItem>
                   {projects.map((project) => (
                     <MenuItem key={project._id} value={project._id}>
                       {project.title || 'Untitled Project'}
@@ -244,90 +239,123 @@ const TasksPage: React.FC = () => {
                   ))}
                 </Select>
               </FormControl>
+            </Box>
 
-              {/* Tasks Summary */}
-              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Box sx={{ 
-                    width: 12, 
-                    height: 12, 
-                    borderRadius: '50%', 
-                    bgcolor: 'primary.main' 
-                  }} />
+            {/* Stats Cards */}
+            <Box
+              sx={{
+                flex: 3,
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: '1fr 1fr',
+                  md: 'repeat(4, minmax(120px, 1fr))',
+                },
+                gap: 2,
+              }}
+            >
+              {[
+                { label: 'Total Tasks', value: tasks.length, color: '#6366f1' },
+                {
+                  label: 'Todo',
+                  value: tasks.filter(t => t.status === 'todo').length,
+                  color: '#0ea5e9',
+                },
+                {
+                  label: 'In Progress',
+                  value: tasks.filter(t => t.status === 'in-progress').length,
+                  color: '#f59e0b',
+                },
+                {
+                  label: 'Completed',
+                  value: tasks.filter(t => t.status === 'completed').length,
+                  color: '#22c55e',
+                },
+              ].map((item, i) => (
+                <Box
+                  key={i}
+                  sx={{
+                    p: 1.5,
+                    borderRadius: 3,
+                    bgcolor: '#fff',
+                    borderLeft: `6px solid ${item.color}`,
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.05)',
+                  }}
+                >
                   <Typography variant="body2" color="text.secondary">
-                    Todo: {tasks.filter(t => t.status === 'todo').length}
+                    {item.label}
+                  </Typography>
+                  <Typography variant="h5" fontWeight={700}>
+                    {item.value}
                   </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Box sx={{ 
-                    width: 12, 
-                    height: 12, 
-                    borderRadius: '50%', 
-                    bgcolor: 'warning.main' 
-                  }} />
-                  <Typography variant="body2" color="text.secondary">
-                    In Progress: {tasks.filter(t => t.status === 'in-progress').length}
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Box sx={{ 
-                    width: 12, 
-                    height: 12, 
-                    borderRadius: '50%', 
-                    bgcolor: 'success.main' 
-                  }} />
-                  <Typography variant="body2" color="text.secondary">
-                    Completed: {tasks.filter(t => t.status === 'completed').length}
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Box sx={{ 
-                    width: 12, 
-                    height: 12, 
-                    borderRadius: '50%', 
-                    bgcolor: 'text.secondary' 
-                  }} />
-                  <Typography variant="body2" color="text.secondary">
-                    Total: {tasks.length}
-                  </Typography>
-                </Box>
-              </Box>
+              ))}
             </Box>
           </Box>
 
-          {/* Loading State */}
+          {/* 🔷 LOADING */}
           {loading && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', my: 8 }}>
-              <CircularProgress size={60} />
+            <Box textAlign="center" py={10}>
+              <CircularProgress size={50} />
             </Box>
           )}
 
-          {/* Error State */}
+          {/* 🔷 ERROR */}
           {error && !loading && (
-            <Alert 
-              severity="error" 
-              sx={{ 
-                mb: 4,
-                borderRadius: 2,
-              }}
-              onClose={() => setError(null)}
-            >
+            <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>
               {error}
             </Alert>
           )}
 
-          {/* Tasks List */}
-          {!loading && (
-            <TaskList 
-              tasks={tasks} 
-              onEdit={handleEditTask} 
-              onDelete={handleDelete} 
-              projectMap={projectMap} 
-            />
+          {/* 🔷 EMPTY STATE */}
+          {!loading && tasks.length === 0 && (
+            <Box
+              sx={{
+                textAlign: 'center',
+                p: 6,
+                borderRadius: 4,
+                bgcolor: '#fff',
+              }}
+            >
+              <AssignmentRounded sx={{ fontSize: 70, color: '#cbd5e1' }} />
+              <Typography variant="h6" mt={2}>
+                No Tasks Found
+              </Typography>
+              <Typography color="text.secondary" mb={3}>
+                Start by creating your first task
+              </Typography>
+
+              <Button
+                variant="contained"
+                startIcon={<AddIcon />}
+                onClick={() => setFormOpen(true)}
+                sx={{ borderRadius: 3 }}
+              >
+                Create Task
+              </Button>
+            </Box>
+          )}
+
+          {/* 🔷 TASK LIST */}
+          {!loading && tasks.length > 0 && (
+            <Box
+              sx={{
+                bgcolor: '#fff',
+                p: 2,
+                borderRadius: 3,
+                boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+              }}
+            >
+              <TaskList
+                tasks={tasks}
+                onEdit={handleEditTask}
+                onDelete={handleDelete}
+                projectMap={projectMap}
+              />
+            </Box>
           )}
         </Container>
 
-        {/* Task Form Modal */}
+        {/* 🔷 FORM MODAL */}
         <TaskForm
           open={formOpen}
           onClose={handleFormClose}

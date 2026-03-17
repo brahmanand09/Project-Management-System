@@ -120,180 +120,150 @@ const DashboardPage: React.FC = () => {
   const completedCount = projects.filter((p) => p.status === 'completed').length;
 
   return (
-    <Fade in timeout={500}>
+    <Fade in timeout={400}>
       <Box
         sx={{
           minHeight: '100vh',
-          bgcolor: 'background.default',
-          pt: { xs: 9, md: 10 },
-          pb: 8,
+          bgcolor: '#f8fafc',
+          pt: { xs: 8, md: 10 },
+          pb: 6,
+          overflowY: 'auto',
         }}
       >
         <Container maxWidth="xl">
-          {/* Header */}
-          <Paper
-            elevation={0}
+
+          {/* 🔷 HEADER */}
+          <Box
             sx={{
-              p: { xs: 3, md: 4 },
-              mb: 6,
+              p: 3,
               borderRadius: 4,
-              bgcolor: 'background.paper',
-              border: '1px solid',
-              borderColor: 'divider',
+              mb: 4,
+              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              color: '#fff',
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexDirection: { xs: 'column', md: 'row' },
+              gap: 2,
             }}
           >
-            <Box
+            <Box>
+              <Typography variant="h5" fontWeight={700}>
+                My Projects
+              </Typography>
+              <Typography sx={{ opacity: 0.85 }}>
+                Manage all your work in one place 🚀
+              </Typography>
+            </Box>
+
+            <Button
+              variant="contained"
+              startIcon={<AddRoundedIcon />}
+              onClick={() => setFormOpen(true)}
               sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' },
-                justifyContent: 'space-between',
-                alignItems: { xs: 'flex-start', sm: 'center' },
-                gap: 3,
+                bgcolor: '#fff',
+                color: '#6366f1',
+                fontWeight: 600,
+                borderRadius: 3,
+                px: 3,
+                '&:hover': { bgcolor: '#f1f5f9' },
               }}
             >
-              <Box>
-                <Typography
-                  variant="h4"
-                  fontWeight={700}
-                  sx={{
-                    background: 'linear-gradient(90deg, #6366f1 0%, #a855f7 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    mb: 0.5,
-                  }}
-                >
-                  My Projects
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  Organize, track, and manage all your work in one place
-                </Typography>
-              </Box>
+              New Project
+            </Button>
+          </Box>
 
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<AddRoundedIcon />}
-                onClick={() => setFormOpen(true)}
+          {/* 🔷 STATS (COMPACT CARDS) */}
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: '1fr 1fr',
+                md: 'repeat(3, minmax(120px, 1fr))',
+              },
+              gap: 1.5,
+              mb: 4,
+            }}
+          >
+            {[
+              { label: 'Total', value: projects.length, color: '#6366f1' },
+              { label: 'Active', value: activeCount, color: '#22c55e' },
+              { label: 'Completed', value: completedCount, color: '#f59e0b' },
+            ].map((item, i) => (
+              <Box
+                key={i}
                 sx={{
-                  borderRadius: 3,
-                  px: 4,
-                  py: 1.4,
-                  fontWeight: 600,
-                  textTransform: 'none',
-                  boxShadow: '0 6px 20px rgba(99,102,241,0.18)',
-                  '&:hover': {
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 12px 32px rgba(99,102,241,0.28)',
-                  },
-                  transition: 'all 0.25s ease',
+                  p: 1.5,
+                  borderRadius: 2,
+                  bgcolor: '#fff',
+                  borderLeft: `4px solid ${item.color}`,
+                  boxShadow: '0 2px 10px rgba(0,0,0,0.04)',
                 }}
               >
-                New Project
-              </Button>
-            </Box>
-
-            {/* Stats */}
-            <Stack
-              direction={{ xs: 'column', sm: 'row' }}
-              spacing={3}
-              sx={{ mt: 4 }}
-              divider={<Divider orientation="vertical" flexItem />}
-            >
-              <Stack direction="row" spacing={1.5} alignItems="center">
-                <Chip
-                  label={projects.length}
-                  color="primary"
-                  size="medium"
-                  sx={{ fontWeight: 600, minWidth: 60 }}
-                />
-                <Typography variant="body1" fontWeight={500}>
-                  Total Projects
+                <Typography variant="caption" color="text.secondary">
+                  {item.label}
                 </Typography>
-              </Stack>
-
-              <Stack direction="row" spacing={1.5} alignItems="center">
-                <Chip
-                  label={activeCount}
-                  color="success"
-                  size="medium"
-                  sx={{ fontWeight: 600, minWidth: 60 }}
-                />
-                <Typography variant="body1" fontWeight={500}>
-                  Active
+                <Typography variant="h6" fontWeight={600}>
+                  {item.value}
                 </Typography>
-              </Stack>
+              </Box>
+            ))}
+          </Box>
 
-              <Stack direction="row" spacing={1.5} alignItems="center">
-                <Chip
-                  label={completedCount}
-                  color="warning"
-                  size="medium"
-                  sx={{ fontWeight: 600, minWidth: 60 }}
-                />
-                <Typography variant="body1" fontWeight={500}>
-                  Completed
-                </Typography>
-              </Stack>
-            </Stack>
-          </Paper>
-
-          {/* Main Content */}
+          {/* 🔷 CONTENT */}
           {loading ? (
-            <Box sx={{ display: 'flex', justifyContent: 'center', py: 12 }}>
-              <CircularProgress size={60} thickness={4} />
+            <Box sx={{ display: 'flex', justifyContent: 'center', py: 10 }}>
+              <CircularProgress size={50} />
             </Box>
           ) : error ? (
-            <Alert
-              severity="error"
-              sx={{
-                mb: 4,
-                borderRadius: 3,
-                '& .MuiAlert-message': { fontSize: '1.05rem' },
-              }}
-              onClose={() => setError(null)}
-            >
+            <Alert severity="error" sx={{ borderRadius: 2 }}>
               {error}
             </Alert>
           ) : projects.length === 0 ? (
-            <Paper
-              elevation={0}
+            <Box
               sx={{
-                p: 8,
+                p: 6,
                 textAlign: 'center',
                 borderRadius: 4,
-                border: '2px dashed',
-                borderColor: 'divider',
-                bgcolor: 'background.paper',
+                bgcolor: '#fff',
               }}
             >
-              <FolderOpenRoundedIcon sx={{ fontSize: 80, color: 'action.disabled', mb: 3 }} />
-              <Typography variant="h5" color="text.secondary" gutterBottom>
-                No projects yet
+              <FolderOpenRoundedIcon sx={{ fontSize: 70, color: '#cbd5e1' }} />
+              <Typography variant="h6" mt={2}>
+                No Projects Found
               </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: 480, mx: 'auto' }}>
-                Start organizing your work by creating your first project.
+              <Typography color="text.secondary" mb={3}>
+                Create your first project to get started
               </Typography>
+
               <Button
                 variant="contained"
                 startIcon={<AddRoundedIcon />}
                 onClick={() => setFormOpen(true)}
-                size="large"
-                sx={{ borderRadius: 3, px: 5, py: 1.5 }}
+                sx={{ borderRadius: 3 }}
               >
-                Create First Project
+                Create Project
               </Button>
-            </Paper>
+            </Box>
           ) : (
-            <ProjectList
-              projects={projects}
-              onSelectProject={handleSelectProject}
-              onDeleteProject={handleDelete}
-              onEditProject={handleEditProject}
-            />
+            <Box
+              sx={{
+                bgcolor: '#fff',
+                p: 2,
+                borderRadius: 3,
+                boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+              }}
+            >
+              <ProjectList
+                projects={projects}
+                onSelectProject={handleSelectProject}
+                onDeleteProject={handleDelete}
+                onEditProject={handleEditProject}
+              />
+            </Box>
           )}
         </Container>
 
-        {/* Modals */}
+        {/* 🔷 MODALS */}
         <ProjectForm
           open={formOpen}
           onClose={() => {
