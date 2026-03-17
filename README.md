@@ -1,41 +1,72 @@
 # 🧩 Project Management System
-A full-stack **Project Management System** built with **React.js**, **Node.js**, **Express**, **MongoDB**,**Material-UI** and **Docker**. This application allows users to manage projects and tasks efficiently with a beautiful dark theme interface.
 
-## 🚀 Features
-- 🔐 **User Authentication** – Register and login system  
-- 📁 **Project Management** – Create, read, update, and delete projects  
-- 📝 **Task Management** – Create and manage tasks within projects  
-- 📱 **Responsive Design** – Works seamlessly across all devices  
-- 🌙 **Dark Theme** – Elegant Material-UI dark mode  
-- ⚡ **Real-time Updates** – Instant UI refresh after operations  
-- 📊 **Pagination** – Smooth handling of large datasets  
+A modern, full-stack **Project Management System** built using **React.js, Node.js, Express, MongoDB, Material-UI, and Docker**.  
+This application helps users efficiently manage projects and tasks with a clean and elegant **dark-themed UI**.
+
+---
+
+## 🌟 Features
+
+- 🔐 **Authentication & Authorization**
+  - Secure login & registration using JWT
+- 📁 **Project Management**
+  - Create, update, delete, and view projects
+- 📝 **Task Management**
+  - Manage tasks within each project
+- ⚡ **Real-time UI Updates**
+  - Instant changes without page reload
+- 📊 **Pagination Support**
+  - Smooth handling of large datasets
+- 📱 **Fully Responsive**
+  - Works across mobile, tablet, and desktop
+- 🌙 **Dark Mode UI**
+  - Built with Material-UI for a modern experience
+
+---
 
 ## 🛠️ Tech Stack
+
 ### 🎨 Frontend
-- React.js (with TypeScript)
+- React.js (TypeScript)
 - Material-UI (MUI)
-- React Hook Form
 - React Router
+- React Hook Form
 - Axios
 - React Toastify
 
 ### ⚙️ Backend
-- Node.js with Express.js  
-- MongoDB with Mongoose  
-- JWT for Authentication  
-- bcrypt for Password Hashing  
-- CORS for Cross-Origin Requests
+- Node.js + Express.js
+- MongoDB + Mongoose
+- JWT Authentication
+- bcrypt (Password Hashing)
+- CORS
 
-### Docker 
+### 🐳 DevOps
+- Docker (Containerization)
 
-## 📋 Prerequisites
-Before running this application, ensure the following are installed on your system:
-- [Node.js](https://nodejs.org/) (v14 or higher)  
-- [MongoDB](https://www.mongodb.com/) (Local or Atlas)  
+---
+
+## 📂 Project Structure
+Project-Management-System/
+│
+├── Backend/ # Express API
+├── Frontend/ # React App
+└── README.md
+
+## ⚙️ Prerequisites
+
+Make sure you have installed:
+
+- Node.js (v14+)
+- MongoDB (Local / Atlas)
 - npm or yarn
+- Docker (optional)
 
 ## ⚡ Quick Start
 ### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/brahmanand09/Project-Management-System.git
+```
 
 3️⃣ Frontend Setup
 # Navigate to frontend directory (in a new terminal)
@@ -92,4 +123,3 @@ npm run build – Build the project for production
 
 npm test – Run frontend tests
 ```bash
-git clone https://github.com/brahmanand09/Project-Management-System.git
