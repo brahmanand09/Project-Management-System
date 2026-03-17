@@ -132,7 +132,7 @@ const DashboardPage: React.FC = () => {
       >
         <Container maxWidth="xl">
 
-          {/* 🔷 HEADER */}
+          {/* HEADER */}
           <Box
             sx={{
               p: 3,
@@ -172,7 +172,7 @@ const DashboardPage: React.FC = () => {
             </Button>
           </Box>
 
-          {/* 🔷 STATS (COMPACT CARDS) */}
+          {/* STATS (COMPACT CARDS) */}
           <Box
             sx={{
               display: 'grid',
@@ -209,7 +209,7 @@ const DashboardPage: React.FC = () => {
             ))}
           </Box>
 
-          {/* 🔷 CONTENT */}
+          {/*  CONTENT */}
           {loading ? (
             <Box sx={{ display: 'flex', justifyContent: 'center', py: 10 }}>
               <CircularProgress size={50} />
@@ -263,7 +263,7 @@ const DashboardPage: React.FC = () => {
           )}
         </Container>
 
-        {/* 🔷 MODALS */}
+        {/*  MODALS */}
         <ProjectForm
           open={formOpen}
           onClose={() => {
