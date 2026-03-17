@@ -162,7 +162,7 @@ const TasksPage: React.FC = () => {
       >
         <Container maxWidth="xl">
 
-          {/* 🔷 HEADER */}
+          {/* HEADER */}
           <Box
             sx={{
               p: 2,
@@ -202,7 +202,7 @@ const TasksPage: React.FC = () => {
             </Button>
           </Box>
 
-          {/* 🔷 FILTER + STATS */}
+          {/* FILTER + STATS */}
           <Box
             sx={{
               display: 'flex',
@@ -292,21 +292,21 @@ const TasksPage: React.FC = () => {
             </Box>
           </Box>
 
-          {/* 🔷 LOADING */}
+          {/* LOADING */}
           {loading && (
             <Box textAlign="center" py={10}>
               <CircularProgress size={50} />
             </Box>
           )}
 
-          {/* 🔷 ERROR */}
+          {/* ERROR */}
           {error && !loading && (
             <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>
               {error}
             </Alert>
           )}
 
-          {/* 🔷 EMPTY STATE */}
+          {/* EMPTY STATE */}
           {!loading && tasks.length === 0 && (
             <Box
               sx={{
@@ -335,7 +335,7 @@ const TasksPage: React.FC = () => {
             </Box>
           )}
 
-          {/* 🔷 TASK LIST */}
+          {/* TASK LIST */}
           {!loading && tasks.length > 0 && (
             <Box
               sx={{
@@ -355,7 +355,7 @@ const TasksPage: React.FC = () => {
           )}
         </Container>
 
-        {/* 🔷 FORM MODAL */}
+        {/* FORM MODAL */}
         <TaskForm
           open={formOpen}
           onClose={handleFormClose}
