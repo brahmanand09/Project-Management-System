@@ -1,95 +1,142 @@
 # 🧩 Project Management System
-A full-stack **Project Management System** built with **React.js**, **Node.js**, **Express**, **MongoDB**, and **Material-UI**. This application allows users to manage projects and tasks efficiently with a beautiful dark theme interface.
 
-## 🚀 Features
-- 🔐 **User Authentication** – Register and login system  
-- 📁 **Project Management** – Create, read, update, and delete projects  
-- 📝 **Task Management** – Create and manage tasks within projects  
-- 📱 **Responsive Design** – Works seamlessly across all devices  
-- 🌙 **Dark Theme** – Elegant Material-UI dark mode  
-- ⚡ **Real-time Updates** – Instant UI refresh after operations  
-- 📊 **Pagination** – Smooth handling of large datasets  
+A modern, full-stack **Project Management System** built using **React.js, Node.js, Express, MongoDB, Material-UI, and Docker**.  
+This application helps users efficiently manage projects and tasks with a clean and elegant **dark-themed UI**.
+
+---
+
+## 🌟 Features
+
+- 🔐 **Authentication & Authorization**
+  - Secure login & registration using JWT
+- 📁 **Project Management**
+  - Create, update, delete, and view projects
+- 📝 **Task Management**
+  - Manage tasks within each project
+- ⚡ **Real-time UI Updates**
+  - Instant changes without page reload
+- 📊 **Pagination Support**
+  - Smooth handling of large datasets
+- 📱 **Fully Responsive**
+  - Works across mobile, tablet, and desktop
+- 🌙 **Dark Mode UI**
+  - Built with Material-UI for a modern experience
+
+---
 
 ## 🛠️ Tech Stack
+
 ### 🎨 Frontend
-- React.js (with TypeScript)
+- React.js (TypeScript)
 - Material-UI (MUI)
-- React Hook Form
 - React Router
+- React Hook Form
 - Axios
 - React Toastify
 
 ### ⚙️ Backend
-- Node.js with Express.js  
-- MongoDB with Mongoose  
-- JWT for Authentication  
-- bcrypt for Password Hashing  
-- CORS for Cross-Origin Requests  
+- Node.js + Express.js
+- MongoDB + Mongoose
+- JWT Authentication
+- bcrypt (Password Hashing)
+- CORS
 
-## 📋 Prerequisites
-Before running this application, ensure the following are installed on your system:
-- [Node.js](https://nodejs.org/) (v14 or higher)  
-- [MongoDB](https://www.mongodb.com/) (Local or Atlas)  
+### 🐳 DevOps
+- Docker (Containerization)
+
+---
+
+## 📂 Project Structure
+Project-Management-System/
+│
+├── Backend/ # Express API
+├── Frontend/ # React App
+└── README.md
+
+## ⚙️ Prerequisites
+
+Make sure you have installed:
+
+- Node.js (v14+)
+- MongoDB (Local / Atlas)
 - npm or yarn
+- Docker (optional)
 
 ## ⚡ Quick Start
+
 ### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/brahmanand09/Project-Management-System.git
+cd Project-Management-System
+```
 
-3️⃣ Frontend Setup
-# Navigate to frontend directory (in a new terminal)
-cd ../Frontend
+---
 
-# Install dependencies
+### 2️⃣ Backend Setup
+
+```bash
+cd Backend
 npm install
+npm run dev
+```
 
-# Start the frontend development server
+✅ Backend will run on: **http://localhost:5000**
+
+---
+
+### 3️⃣ Frontend Setup
+
+```bash
+cd ../Frontend
+npm install
 npm start
+```
 
+✅ Frontend will run on: **http://localhost:3000**
 
-✅ The frontend will run on http://localhost:3000
+---
 
-4️⃣ Environment Configuration
+### 4️⃣ Environment Configuration
 
-If the .env file is missing in the backend folder:
+Create a `.env` file inside the **Backend** folder and add:
 
-# Copy the example environment file
-cp .env.example .env
-
-
-Then open the .env file and update it with your configuration:
-
+```env
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 PORT=5000
+```
 
-5️⃣ Admin Seeder (Optional)
+---
 
-To populate the database with initial admin data, run:
+### 5️⃣ Seed Data (Optional)
 
-# Navigate to backend directory
-cd Backend
+To populate the database with initial admin data:
 
-# Run the admin seeder
-node adminSeeder.js
-
-
-✅ This will insert initial admin details into your MongoDB database.
-
-🔧 Available Scripts
-🖥️ Backend Scripts
-
-npm start – Start the production server
-
-npm run dev – Start the development server with nodemon
-
-npm test – Run backend tests
-
-💻 Frontend Scripts
-
-npm start – Start the frontend development server
-
-npm run build – Build the project for production
-
-npm test – Run frontend tests
 ```bash
-git clone github.com:SatyaJaiswal/Project-Management-System.git
+cd Backend
+npm run seed
+```
+
+✅ This will insert default admin credentials into your MongoDB database.
+
+---
+
+## 🔧 Available Scripts
+
+### 🖥️ Backend
+
+| Command        | Description                         |
+|----------------|-------------------------------------|
+| npm run dev    | Start development server (nodemon)  |
+| npm start      | Start production server             |
+| npm test       | Run backend tests                   |
+
+---
+
+### 💻 Frontend
+
+| Command        | Description                         |
+|----------------|-------------------------------------|
+| npm start      | Start development server            |
+| npm run build  | Build for production                |
+| npm test       | Run frontend tests                  |
