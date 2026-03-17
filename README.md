@@ -1,5 +1,5 @@
 # 🧩 Project Management System
-A full-stack **Project Management System** built with **React.js**, **Node.js**, **Express**, **MongoDB**, and **Material-UI**. This application allows users to manage projects and tasks efficiently with a beautiful dark theme interface.
+A full-stack **Project Management System** built with **React.js**, **Node.js**, **Express**, **MongoDB**,**Material-UI** and **Docker**. This application allows users to manage projects and tasks efficiently with a beautiful dark theme interface.
 
 ## 🚀 Features
 - 🔐 **User Authentication** – Register and login system  
@@ -24,7 +24,9 @@ A full-stack **Project Management System** built with **React.js**, **Node.js**,
 - MongoDB with Mongoose  
 - JWT for Authentication  
 - bcrypt for Password Hashing  
-- CORS for Cross-Origin Requests  
+- CORS for Cross-Origin Requests
+
+### Docker 
 
 ## 📋 Prerequisites
 Before running this application, ensure the following are installed on your system:
@@ -52,25 +54,23 @@ npm start
 
 If the .env file is missing in the backend folder:
 
-# Copy the example environment file
-cp .env.example .env
-
-
+# Add environment file
+.env
 Then open the .env file and update it with your configuration:
 
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 PORT=5000
 
-5️⃣ Admin Seeder (Optional)
+5️⃣Seeds
 
 To populate the database with initial admin data, run:
 
 # Navigate to backend directory
 cd Backend
 
-# Run the admin seeder
-node adminSeeder.js
+# Run the seed
+npm run seed
 
 
 ✅ This will insert initial admin details into your MongoDB database.
@@ -92,4 +92,4 @@ npm run build – Build the project for production
 
 npm test – Run frontend tests
 ```bash
-git clone github.com:SatyaJaiswal/Project-Management-System.git
+git clone https://github.com/brahmanand09/Project-Management-System.git
