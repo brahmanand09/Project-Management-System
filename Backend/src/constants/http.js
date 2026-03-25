@@ -1,8 +1,3 @@
-/*
- * Reference : https://www.npmjs.com/package/http-status-codes
- * Refernce : https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
- */
-
 const HTTP_STATUS_CODES = {
     OK: 200,
     CREATED: 201,
